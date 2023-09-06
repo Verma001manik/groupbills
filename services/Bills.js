@@ -3,6 +3,21 @@ const router = express.Router();
 const fs = require('fs');
 const DATA_FILE = 'bills.json';
 const bills = readDataFromFile();
+
+function displayFileContents() {
+    fs.readFile(path, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading the file:', err);
+      } else {
+        try {
+          const jsonData = JSON.parse(data);
+          console.log('Current JSON data:', jsonData);
+        } catch (parseError) {
+          console.error('Error parsing JSON:', parseError);
+        }
+      }
+    });
+  }
 function readDataFromFile(){
     try{
         const data  = fs.readFileSync(DATA_FILE,'utf-8');
@@ -22,12 +37,17 @@ function writeDataToFile(data){
         console.error("errror writing")
     }
 }
+fs.watchFile(path, { persistent: true, interval: interval }, (curr, prev) => {
+    console.log(`File ${path} changed.`);
+    // Display the updated file contents
+    displayFileContents();
+  });
 router.get('/', (req,res)=>{
     res.send(bills)
 })
 router.post('/',(req,res)=>{
     const {date, amount}= req.body;
-    console.log(date,amount)
+    // console.log(date,amount)
 
     const bill = {
         id: bills.length + 1,
