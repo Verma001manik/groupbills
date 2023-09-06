@@ -38,7 +38,7 @@ function writeDataToFile(data){
         console.error("errror writing")
     }
 }
-fs.watchFile(DATA_FILE, { persistent: true, interval: interval }, (curr, prev) => {
+fs.watchFile(DATA_FILE, { persistent: true}, (curr, prev) => {
     console.log(`File ${path} changed.`);
     // Display the updated file contents
     displayFileContents();
