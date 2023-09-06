@@ -39,7 +39,7 @@ function writeDataToFile(data){
     }
 }
 fs.watchFile(DATA_FILE, { persistent: true}, (curr, prev) => {
-    console.log(`File ${path} changed.`);
+    console.log(`File ${DATA_FILE} changed.`);
     // Display the updated file contents
     displayFileContents();
   });
