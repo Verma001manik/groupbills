@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+
 const DATA_FILE = 'bills.json';
 const bills = readDataFromFile();
 
 function displayFileContents() {
-    fs.readFile(path, 'utf8', (err, data) => {
+    fs.readFile(DATA_FILE, 'utf8', (err, data) => {
       if (err) {
         console.error('Error reading the file:', err);
       } else {
@@ -37,7 +38,7 @@ function writeDataToFile(data){
         console.error("errror writing")
     }
 }
-fs.watchFile(path, { persistent: true, interval: interval }, (curr, prev) => {
+fs.watchFile(DATA_FILE, { persistent: true, interval: interval }, (curr, prev) => {
     console.log(`File ${path} changed.`);
     // Display the updated file contents
     displayFileContents();
