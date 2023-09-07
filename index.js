@@ -1,8 +1,9 @@
 const express = require('express');
 const BillRouter = require('./services/Bills');
 const cors = require('cors');
-const path = require('path'); // Import the 'path' module
-
+const path = require('path'); 
+const Bill = require('./models/Bill');// Import the 'path' module
+require('dotenv').config();
 const app = express();
 app.use(express.json());
 app.use(express.static('build'));
